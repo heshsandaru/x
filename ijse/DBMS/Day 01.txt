@@ -1,0 +1,138 @@
+01. Check whether you have mysql installed in your device
+---------------------------------------------------------
+
+service mysql status
+systemctl is-active mysql
+
+02. update all software in the device
+---------------------------------------
+
+sudo apt-get update
+
+03. Install mysql to the device
+-------------------------------------
+
+sudo apt-get install mysql-server
+
+04. Check whether you have mysql installed in your device
+---------------------------------------------------------
+
+service mysql status
+systemctl is-active mysql
+
+05. Secure mysql connection
+------------------------------
+
+sudo mysql_secure_installation
+
+06. Access mysql through the terminal
+--------------------------------------
+
+mysql -u root -p
+
+07. Change password of mysql
+
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password by 'Ijse@123';
+
+
+
+===========================================================================
+
+
+
+08. Find the version of mysql client
+------------------------------------
+
+mysql --version
+
+09. Find the version of mysql server
+-----------------------------------
+
+mysqld -V
+
+10. Access mysql client through the terminal
+--------------------------------------------
+
+mysql -u root -p
+
+11. View all databases
+----------------------
+
+show databases;
+
+12. Create new database
+
+create database kade;
+
+14. Choose the relevant database
+
+use kade;
+
+15. Create new table
+
+create table customer(
+	customer_id varchar(5),
+	customer_name varchar(25),
+	customer_address varchar(50),
+	customer_age int(5)
+);
+
+16. View all existing tables
+
+show tables;
+
+17. Insert data into table
+
+insert into customer values('C001', 'Kasun', 'Colombo', 22);
+
+18. View all customers from customer table
+
+select * from customer;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

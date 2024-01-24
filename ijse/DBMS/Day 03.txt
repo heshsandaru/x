@@ -1,0 +1,197 @@
+create database institute;
+
+use institute;
+
+create table student(
+	st_id varchar(5),
+	st_name varchar(20),
+	st_address varchar(20)
+);
+
+insert into student values('S001', 'Kamal', 'Galle');
+
+create table classroom(
+	cl_id varchar(5),
+	cl_descrition varchar(20)
+);
+
+insert into classroom values('C001', 'Lab302');
+
+=========================================================================
+================INSERTING VALUES INTO TABLES=============================
+
+insert into student values('S001', 'Kamal', 'Galle');
+
+insert into student(st_id, st_name, st_address) values
+	('S001','Namal', 'Panadura'),
+	('S002','Nimal', 'Galle'),
+	('S003','Kasun', 'Kandy');
+
+insert into student(st_name, st_address) values
+	('Prasad', 'Panadura');
+
+=========================================================================
+================DELETE DATABASES=============================
+	
+
+
+drop database kade;
+
+
+
+=========================================================================
+================DELETE TABLES=============================
+	
+	
+	
+drop table classroom;
+	
+
+=========================================================================
+================DESCRIBE TABLES=============================
+	
+	desc student;
+	
+=========================================================================
+================DELETE A VALUE FROM TABLES=============================
+	
+
+delete from student where st_name='Kamal';
+
+	
+
+=========================================================================
+================CONSTRAINTS=============================
+		
+===============UNIQUE
+
+
+create table student(
+	st_id varchar(5) unique,
+	st_name varchar(20),
+	st_address varchar(20)
+);
+
+alter table student
+	modify st_id varchar(5) unique;
+
+
+
+insert into student(st_id, st_name, st_address) values
+	('S001','Namal', 'Panadura');
+
+===============NOT NULL
+
+alter table student
+	modify st_id varchar(5) not null;
+
+delete from student where st_name = 'Prasad';
+
+alter table student
+	modify st_id varchar(5) not null;
+
+insert into student(st_name, st_address) values
+	('Prasad', 'Panadura');
+
+===============PRIMARY KEY
+
+alter table student
+	modify st_id varchar(5) primary key;
+
+
+===============DEFAULT
+
+
+create table classroom(
+	cl_id varchar(5) primary key,
+	cl_descrition varchar(20) default 'Lab 302'
+);
+
+insert into classroom(cl_id) values ('C001');
+
+
+===============FOREIGN KEY
+
+
+create table bag(
+	b_id varchar(5) primary key,
+	b_description varchar(20),
+	st_id varchar(5),
+	foreign key(st_id) references student(st_id)
+);
+
+insert into bag values('B001', 'Laptop Bag', 'S001');
+
+
+delete from student where st_id='S001';
+
+-----------------------------------------------------
+-----------ON UPDATE CASCADE ON DELETE CASCADE
+
+create table bag(
+	b_id varchar(5) primary key,
+	b_description varchar(20),
+	st_id varchar(5),
+	foreign key(st_id) references student(st_id) on update cascade on delete cascade
+);
+	
+
+=========================================================================
+================THOGAKADE DATABASE=============================
+		
+create database thogakade;	
+	
+use thogakade;
+
+create table customer(
+	id varchar(5) primary key,
+	name varchar(25),
+	address varchar(50)
+);	
+	
+insert into customer values('C001','Supun','Panadura');
+
+create table orders(
+	id varchar(5) primary key,
+	date date,
+	customer_id varchar(5),
+	foreign key(customer_id) references customer(id) on delete cascade on update cascade
+);
+	
+insert into orders values('D001', '2023-05-20', 'C001');	
+insert into orders values('D002', '2023-03-20', 'C001');	
+
+create table item(
+	code varchar(5) primary key,
+	description varchar(50),
+	unit_price decimal(5,2),
+	qty_on_hand int(5)
+);
+
+insert into item values('P001', 'Sunlight', 250.00, 50);
+
+create table order_details(
+	qty int(5),
+	item_code varchar(5),
+	order_id varchar(5),
+	foreign key(item_code) references item(code) on update cascade on delete cascade,
+	foreign key(order_id) references orders(id) on update cascade on delete cascade
+);
+
+insert into order_details values(25, 'P001', 'D001');
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
